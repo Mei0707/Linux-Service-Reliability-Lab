@@ -1,0 +1,290 @@
+{
+  "baseline": {
+    "repetitions": 1,
+    "users": 20,
+    "rps": 864.0401148649713,
+    "successful_rps": 864.0401148649713,
+    "p50_ms": 12,
+    "p95_ms": 30,
+    "p99_ms": 70,
+    "read_p95_ms": 30,
+    "error_rate": 0.0,
+    "cache_hit_rate": null,
+    "database_connections_median": 11.5,
+    "client_connections_min": 20,
+    "client_connections_max": 20,
+    "profile_hashes": [
+      "a8a9bfccde378ab3ecc2ac1be832d9681d0c90ce177c1ad4b2181092ce006cad"
+    ]
+  },
+  "workers-2": {
+    "repetitions": 1,
+    "users": 20,
+    "rps": 1482.0373165559872,
+    "successful_rps": 1482.0373165559872,
+    "p50_ms": 6,
+    "p95_ms": 16,
+    "p99_ms": 28,
+    "read_p95_ms": 16,
+    "error_rate": 0.0,
+    "cache_hit_rate": null,
+    "database_connections_median": 16.0,
+    "client_connections_min": 20,
+    "client_connections_max": 20,
+    "profile_hashes": [
+      "a8a9bfccde378ab3ecc2ac1be832d9681d0c90ce177c1ad4b2181092ce006cad"
+    ]
+  },
+  "workers-4": {
+    "repetitions": 1,
+    "users": 20,
+    "rps": 1521.4667271433943,
+    "successful_rps": 1521.4667271433943,
+    "p50_ms": 6,
+    "p95_ms": 16,
+    "p99_ms": 30,
+    "read_p95_ms": 16,
+    "error_rate": 0.0,
+    "cache_hit_rate": null,
+    "database_connections_median": 40.0,
+    "client_connections_min": 20,
+    "client_connections_max": 20,
+    "profile_hashes": [
+      "a8a9bfccde378ab3ecc2ac1be832d9681d0c90ce177c1ad4b2181092ce006cad"
+    ]
+  },
+  "workers-8": {
+    "repetitions": 1,
+    "users": 20,
+    "rps": 1522.6180662876222,
+    "successful_rps": 1522.6180662876222,
+    "p50_ms": 6,
+    "p95_ms": 16,
+    "p99_ms": 29,
+    "read_p95_ms": 16,
+    "error_rate": 0.0,
+    "cache_hit_rate": null,
+    "database_connections_median": 51.5,
+    "client_connections_min": 20,
+    "client_connections_max": 20,
+    "profile_hashes": [
+      "a8a9bfccde378ab3ecc2ac1be832d9681d0c90ce177c1ad4b2181092ce006cad"
+    ]
+  },
+  "replicas-2": {
+    "repetitions": 1,
+    "users": 20,
+    "rps": 1284.1401757740148,
+    "successful_rps": 1284.1401757740148,
+    "p50_ms": 7,
+    "p95_ms": 20,
+    "p99_ms": 56,
+    "read_p95_ms": 20,
+    "error_rate": 0.0,
+    "cache_hit_rate": null,
+    "database_connections_median": 25.0,
+    "client_connections_min": 20,
+    "client_connections_max": 20,
+    "profile_hashes": [
+      "a8a9bfccde378ab3ecc2ac1be832d9681d0c90ce177c1ad4b2181092ce006cad"
+    ]
+  },
+  "replicas-3": {
+    "repetitions": 1,
+    "users": 20,
+    "rps": 1436.444690271025,
+    "successful_rps": 1436.444690271025,
+    "p50_ms": 6,
+    "p95_ms": 18,
+    "p99_ms": 36,
+    "read_p95_ms": 18,
+    "error_rate": 0.0,
+    "cache_hit_rate": null,
+    "database_connections_median": 27.5,
+    "client_connections_min": 20,
+    "client_connections_max": 20,
+    "profile_hashes": [
+      "a8a9bfccde378ab3ecc2ac1be832d9681d0c90ce177c1ad4b2181092ce006cad"
+    ]
+  },
+  "cache": {
+    "repetitions": 1,
+    "users": 20,
+    "rps": 1113.449693985698,
+    "successful_rps": 1113.449693985698,
+    "p50_ms": 11,
+    "p95_ms": 20,
+    "p99_ms": 34,
+    "read_p95_ms": 20,
+    "error_rate": 0.0,
+    "cache_hit_rate": null,
+    "database_connections_median": 19.0,
+    "client_connections_min": 20,
+    "client_connections_max": 20,
+    "profile_hashes": [
+      "a8a9bfccde378ab3ecc2ac1be832d9681d0c90ce177c1ad4b2181092ce006cad"
+    ]
+  },
+  "ttl-10": {
+    "repetitions": 1,
+    "users": 20,
+    "rps": 1177.7792766307318,
+    "successful_rps": 1177.7792766307318,
+    "p50_ms": 10,
+    "p95_ms": 18,
+    "p99_ms": 29,
+    "read_p95_ms": 18,
+    "error_rate": 0.0,
+    "cache_hit_rate": null,
+    "database_connections_median": 19.0,
+    "client_connections_min": 20,
+    "client_connections_max": 20,
+    "profile_hashes": [
+      "a8a9bfccde378ab3ecc2ac1be832d9681d0c90ce177c1ad4b2181092ce006cad"
+    ]
+  },
+  "ttl-300": {
+    "repetitions": 1,
+    "users": 20,
+    "rps": 1047.8056193916782,
+    "successful_rps": 1047.8056193916782,
+    "p50_ms": 12,
+    "p95_ms": 22,
+    "p99_ms": 41,
+    "read_p95_ms": 21,
+    "error_rate": 0.0,
+    "cache_hit_rate": null,
+    "database_connections_median": 18.5,
+    "client_connections_min": 20,
+    "client_connections_max": 20,
+    "profile_hashes": [
+      "a8a9bfccde378ab3ecc2ac1be832d9681d0c90ce177c1ad4b2181092ce006cad"
+    ]
+  },
+  "pooled": {
+    "repetitions": 1,
+    "users": 20,
+    "rps": 1132.367926666811,
+    "successful_rps": 1132.367926666811,
+    "p50_ms": 10,
+    "p95_ms": 22,
+    "p99_ms": 33,
+    "read_p95_ms": 21,
+    "error_rate": 0.0,
+    "cache_hit_rate": null,
+    "database_connections_median": 14.5,
+    "client_connections_min": 20,
+    "client_connections_max": 20,
+    "profile_hashes": [
+      "a8a9bfccde378ab3ecc2ac1be832d9681d0c90ce177c1ad4b2181092ce006cad"
+    ]
+  },
+  "keepalive": {
+    "repetitions": 1,
+    "users": 20,
+    "rps": 1328.4686435709682,
+    "successful_rps": 1328.4686435709682,
+    "p50_ms": 8,
+    "p95_ms": 15,
+    "p99_ms": 27,
+    "read_p95_ms": 15,
+    "error_rate": 0.0,
+    "cache_hit_rate": null,
+    "database_connections_median": 16.5,
+    "client_connections_min": 20,
+    "client_connections_max": 20,
+    "profile_hashes": [
+      "a8a9bfccde378ab3ecc2ac1be832d9681d0c90ce177c1ad4b2181092ce006cad"
+    ]
+  },
+  "timeout-3s": {
+    "repetitions": 1,
+    "users": 20,
+    "rps": 1195.2530083606055,
+    "successful_rps": 1195.2530083606055,
+    "p50_ms": 9,
+    "p95_ms": 19,
+    "p99_ms": 37,
+    "read_p95_ms": 19,
+    "error_rate": 0.0,
+    "cache_hit_rate": null,
+    "database_connections_median": 18.0,
+    "client_connections_min": 20,
+    "client_connections_max": 20,
+    "profile_hashes": [
+      "a8a9bfccde378ab3ecc2ac1be832d9681d0c90ce177c1ad4b2181092ce006cad"
+    ]
+  },
+  "file-limit": {
+    "repetitions": 1,
+    "users": 20,
+    "rps": 1216.244295757004,
+    "successful_rps": 1216.244295757004,
+    "p50_ms": 9,
+    "p95_ms": 19,
+    "p99_ms": 36,
+    "read_p95_ms": 18,
+    "error_rate": 0.0,
+    "cache_hit_rate": null,
+    "database_connections_median": 18.0,
+    "client_connections_min": 20,
+    "client_connections_max": 20,
+    "profile_hashes": [
+      "a8a9bfccde378ab3ecc2ac1be832d9681d0c90ce177c1ad4b2181092ce006cad"
+    ]
+  },
+  "backlog": {
+    "repetitions": 1,
+    "users": 20,
+    "rps": 1251.3656003823937,
+    "successful_rps": 1251.3656003823937,
+    "p50_ms": 9,
+    "p95_ms": 19,
+    "p99_ms": 30,
+    "read_p95_ms": 18,
+    "error_rate": 0.0,
+    "cache_hit_rate": null,
+    "database_connections_median": 18.0,
+    "client_connections_min": 20,
+    "client_connections_max": 20,
+    "profile_hashes": [
+      "a8a9bfccde378ab3ecc2ac1be832d9681d0c90ce177c1ad4b2181092ce006cad"
+    ]
+  },
+  "nginx-connections": {
+    "repetitions": 1,
+    "users": 20,
+    "rps": 1255.8647281491815,
+    "successful_rps": 1255.8647281491815,
+    "p50_ms": 9,
+    "p95_ms": 17,
+    "p99_ms": 35,
+    "read_p95_ms": 16,
+    "error_rate": 0.0,
+    "cache_hit_rate": null,
+    "database_connections_median": 18.0,
+    "client_connections_min": 20,
+    "client_connections_max": 20,
+    "profile_hashes": [
+      "a8a9bfccde378ab3ecc2ac1be832d9681d0c90ce177c1ad4b2181092ce006cad"
+    ]
+  },
+  "tuned": {
+    "repetitions": 1,
+    "users": 20,
+    "rps": 1803.0271361590435,
+    "successful_rps": 1803.0271361590435,
+    "p50_ms": 4,
+    "p95_ms": 11,
+    "p99_ms": 19,
+    "read_p95_ms": 11,
+    "error_rate": 0.0,
+    "cache_hit_rate": null,
+    "database_connections_median": 18.0,
+    "client_connections_min": 20,
+    "client_connections_max": 20,
+    "profile_hashes": [
+      "a8a9bfccde378ab3ecc2ac1be832d9681d0c90ce177c1ad4b2181092ce006cad"
+    ]
+  }
+}

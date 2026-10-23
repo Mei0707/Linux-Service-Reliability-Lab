@@ -1,0 +1,32 @@
+{
+  "started_at": "2026-10-23T23:07:23.544934+00:00",
+  "platform": "macOS-26.5.2-arm64-arm-64bit",
+  "experiments": [
+    "cache"
+  ],
+  "arguments": {
+    "experiments": [
+      "cache"
+    ],
+    "users": 20,
+    "warmup": 10.0,
+    "duration": 15.0,
+    "repeats": 1,
+    "max_error_rate": 0.0,
+    "target": "http://127.0.0.1:8088",
+    "prometheus": "http://127.0.0.1:9095",
+    "load_host": null,
+    "remote_dir": "~/reliability-lab",
+    "output": "results/metrics-validation"
+  },
+  "separate_load_host": false,
+  "docker": {
+    "server_version": "28.0.4",
+    "os": "Docker Desktop",
+    "kernel": "6.10.14-linuxkit",
+    "architecture": "aarch64",
+    "cpus": 10,
+    "memory_bytes": 8218034176,
+    "running_containers": 36
+  }
+}

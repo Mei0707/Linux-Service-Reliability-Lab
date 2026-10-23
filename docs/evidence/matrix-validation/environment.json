@@ -1,0 +1,47 @@
+{
+  "started_at": "2026-10-23T22:49:23.652085+00:00",
+  "platform": "macOS-26.5.2-arm64-arm-64bit",
+  "experiments": [
+    "baseline",
+    "workers-2",
+    "workers-4",
+    "workers-8",
+    "replicas-2",
+    "replicas-3",
+    "cache",
+    "ttl-10",
+    "ttl-300",
+    "pooled",
+    "keepalive",
+    "timeout-3s",
+    "file-limit",
+    "backlog",
+    "nginx-connections",
+    "tuned"
+  ],
+  "arguments": {
+    "experiments": [
+      "all"
+    ],
+    "users": 20,
+    "warmup": 3.0,
+    "duration": 10.0,
+    "repeats": 1,
+    "target": "http://127.0.0.1:8088",
+    "prometheus": "http://127.0.0.1:9095",
+    "load_host": null,
+    "remote_dir": "~/reliability-lab",
+    "output": "results/matrix-validation"
+  },
+  "separate_load_host": false,
+  "docker": {
+    "ServerVersion": "28.0.4",
+    "OperatingSystem": "Docker Desktop",
+    "KernelVersion": "6.10.14-linuxkit",
+    "Architecture": "aarch64",
+    "NCPU": 10,
+    "MemTotal": 8218034176,
+    "ContainersRunning": 36
+  },
+  "metadata_note": "Docker metadata projected to server resources; full original remains in results/matrix-validation/environment.json."
+}

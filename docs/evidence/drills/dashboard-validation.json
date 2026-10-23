@@ -1,0 +1,170 @@
+[
+  {
+    "panel": "Service request rate",
+    "expression": "sum by (route) (rate(lab_http_requests_total[1m]))",
+    "status": "success",
+    "series": 3
+  },
+  {
+    "panel": "Service 5xx fraction",
+    "expression": "sum(rate(lab_http_requests_total{status=~\"5..\"}[1m])) / clamp_min(sum(rate(lab_http_requests_total[1m])), 1)",
+    "status": "success",
+    "series": 0
+  },
+  {
+    "panel": "Request p50 / p95 / p99",
+    "expression": "histogram_quantile(0.5, sum by (le) (rate(lab_http_request_duration_seconds_bucket[1m])))",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Request p50 / p95 / p99",
+    "expression": "histogram_quantile(0.95, sum by (le) (rate(lab_http_request_duration_seconds_bucket[1m])))",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Request p50 / p95 / p99",
+    "expression": "histogram_quantile(0.99, sum by (le) (rate(lab_http_request_duration_seconds_bucket[1m])))",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Cache hit fraction",
+    "expression": "sum(rate(lab_cache_requests_total{result=\"hit\"}[1m])) / clamp_min(sum(rate(lab_cache_requests_total{result=~\"hit|miss\"}[1m])), 0.001)",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Reachable / expected replicas",
+    "expression": "sum(up{job=\"app\"})",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Reachable / expected replicas",
+    "expression": "max(lab_expected_replicas)",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Database operation p95",
+    "expression": "histogram_quantile(0.95, sum by (le, operation) (rate(lab_db_operation_duration_seconds_bucket[1m])))",
+    "status": "success",
+    "series": 5
+  },
+  {
+    "panel": "App database connections / waiters",
+    "expression": "sum(lab_db_pool_connections)",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "App database connections / waiters",
+    "expression": "sum(lab_db_pool_waiting)",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Postgres backend utilization",
+    "expression": "sum(pg_stat_database_numbackends{datname=\"lab\"}) / max(pg_settings_max_connections)",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Postgres transaction rate",
+    "expression": "sum(rate(pg_stat_database_xact_commit{datname=\"lab\"}[1m]))",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Postgres deadlocks / conflicts",
+    "expression": "rate(pg_stat_database_deadlocks{datname=\"lab\"}[1m])",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Postgres deadlocks / conflicts",
+    "expression": "rate(pg_stat_database_conflicts{datname=\"lab\"}[1m])",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Redis memory utilization",
+    "expression": "redis_memory_used_bytes / redis_memory_max_bytes",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Redis blocked clients / connection rejects",
+    "expression": "redis_blocked_clients",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Redis blocked clients / connection rejects",
+    "expression": "rate(redis_rejected_connections_total[1m])",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Nginx active / reading / writing / waiting",
+    "expression": "nginx_connections_active",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Nginx active / reading / writing / waiting",
+    "expression": "nginx_connections_reading",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Nginx active / reading / writing / waiting",
+    "expression": "nginx_connections_writing",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Nginx active / reading / writing / waiting",
+    "expression": "nginx_connections_waiting",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Nginx connection drops",
+    "expression": "rate(nginx_connections_accepted[1m]) - rate(nginx_connections_handled[1m])",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Dependency availability",
+    "expression": "redis_up",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Dependency availability",
+    "expression": "pg_up",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Dependency availability",
+    "expression": "nginx_up",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": "Dependency error rate",
+    "expression": "sum by (type) (rate(lab_db_errors_total[1m]))",
+    "status": "success",
+    "series": 0
+  },
+  {
+    "panel": "Dependency error rate",
+    "expression": "sum by (operation) (rate(lab_cache_errors_total[1m]))",
+    "status": "success",
+    "series": 1
+  }
+]

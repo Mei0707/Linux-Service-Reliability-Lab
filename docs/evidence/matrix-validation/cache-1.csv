@@ -1,0 +1,5 @@
+method,name,requests,failures,rps,p50_ms,p95_ms,p99_ms
+GET,/links/[code]/stats,241,0,24.09891120346235,9,16,27
+GET,/links/[code],10001,0,1000.0548172026015,11,20,33
+POST,/links,893,0,89.29596557963434,14,25,46
+,Aggregated,11135,0,1113.449693985698,11,20,34

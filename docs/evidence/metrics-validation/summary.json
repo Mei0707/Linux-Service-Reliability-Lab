@@ -1,0 +1,20 @@
+{
+  "cache": {
+    "repetitions": 1,
+    "users": 20,
+    "rps": 1086.5115217836378,
+    "successful_rps": 1086.5115217836378,
+    "p50_ms": 11,
+    "p95_ms": 21,
+    "p99_ms": 30,
+    "read_p95_ms": 21,
+    "error_rate": 0.0,
+    "cache_hit_rate": 0.8605329174859313,
+    "database_connections_median": 19.0,
+    "client_connections_min": 20,
+    "client_connections_max": 21,
+    "profile_hashes": [
+      "a8a9bfccde378ab3ecc2ac1be832d9681d0c90ce177c1ad4b2181092ce006cad"
+    ]
+  }
+}

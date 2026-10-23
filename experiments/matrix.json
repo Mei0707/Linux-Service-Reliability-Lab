@@ -1,0 +1,18 @@
+{
+  "baseline": {"description": "One replica, one worker, no Redis cache, direct PostgreSQL", "changes": {"REPLICAS": "1", "WEB_WORKERS": "1", "CACHE_ENABLED": "false", "CACHE_TTL": "60", "DB_HOST": "postgres", "DB_PORT": "5432", "DB_POOL_SIZE": "16", "NGINX_KEEPALIVE": "0", "NGINX_CONNECTIONS": "1024", "NGINX_PROXY_TIMEOUT": "6s", "NOFILE": "1024", "SOMAXCONN": "128"}},
+  "workers-2": {"parent": "baseline", "variable": "workers", "changes": {"WEB_WORKERS": "2"}},
+  "workers-4": {"parent": "workers-2", "variable": "workers", "changes": {"WEB_WORKERS": "4"}},
+  "workers-8": {"parent": "workers-4", "variable": "workers", "changes": {"WEB_WORKERS": "8"}},
+  "replicas-2": {"parent": "baseline", "variable": "replicas", "changes": {"REPLICAS": "2"}},
+  "replicas-3": {"parent": "replicas-2", "variable": "replicas", "changes": {"REPLICAS": "3"}},
+  "cache": {"parent": "baseline", "variable": "cache enabled", "changes": {"CACHE_ENABLED": "true"}},
+  "ttl-10": {"parent": "cache", "variable": "cache TTL", "changes": {"CACHE_TTL": "10"}},
+  "ttl-300": {"parent": "cache", "variable": "cache TTL", "changes": {"CACHE_TTL": "300"}},
+  "pooled": {"parent": "cache", "variable": "database route", "changes": {"DB_HOST": "pgbouncer", "DB_PORT": "6432"}},
+  "keepalive": {"parent": "pooled", "variable": "upstream keepalive", "changes": {"NGINX_KEEPALIVE": "128"}},
+  "timeout-3s": {"parent": "keepalive", "variable": "proxy timeout", "changes": {"NGINX_PROXY_TIMEOUT": "3s"}},
+  "file-limit": {"parent": "keepalive", "variable": "file descriptors", "changes": {"NOFILE": "65536"}},
+  "backlog": {"parent": "file-limit", "variable": "listen backlog", "changes": {"SOMAXCONN": "4096"}},
+  "nginx-connections": {"parent": "backlog", "variable": "Nginx connections", "changes": {"NGINX_CONNECTIONS": "8192"}},
+  "tuned": {"parent": "nginx-connections", "variable": "replicas", "changes": {"REPLICAS": "3"}}
+}

@@ -1,0 +1,15 @@
+{
+  "id": "20261023T230956Z-a3f1b7c5",
+  "fault": "redis-outage",
+  "round": "validation",
+  "status": "healed",
+  "injected_at": 1792796996.711333,
+  "root_cause": "The Redis container was stopped; the service used its durable PostgreSQL fallback. Automated validation, excluded from human diagnosis timing.",
+  "symptoms": "Automated probes observed the responses and dependency state recorded below.",
+  "evidence": "{\n  \"readiness\": {\n    \"status\": \"ready\",\n    \"database\": \"ok\",\n    \"cache\": \"degraded\"\n  },\n  \"exact_hits_after_fallback\": 11\n}",
+  "validation": "passed",
+  "validation_verified_at": 1792796996.811966,
+  "healed_at": 1792796997.114597,
+  "recovery_verified_at": 1792796997.1361752,
+  "recovery_evidence": "Readiness 200 and successful link resolution after cleanup."
+}

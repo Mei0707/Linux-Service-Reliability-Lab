@@ -1,0 +1,53 @@
+rule_files:
+  - /etc/prometheus/alerts.yml
+evaluation_interval: 5s
+tests:
+  - name: replica-count-detects-a-missing-peer
+    interval: 5s
+    input_series:
+      - series: 'up{job="app",instance="one"}'
+        values: '1x24'
+      - series: 'up{job="app",instance="two"}'
+        values: '1x24'
+      - series: 'up{job="app",instance="three"}'
+        values: '0x24'
+      - series: 'lab_expected_replicas{instance="one"}'
+        values: '3x24'
+    alert_rule_test:
+      - eval_time: 1m
+        alertname: ReplicaUnavailable
+        exp_alerts:
+          - exp_labels:
+              severity: critical
+            exp_annotations:
+              summary: Fewer app replicas are reachable than configured
+  - name: redis-down-fires-after-persistence-window
+    interval: 5s
+    input_series:
+      - series: 'redis_up{job="redis",instance="redis-exporter:9121"}'
+        values: '0x24'
+    alert_rule_test:
+      - eval_time: 30s
+        alertname: RedisUnavailable
+        exp_alerts:
+          - exp_labels:
+              job: redis
+              instance: redis-exporter:9121
+              severity: warning
+            exp_annotations:
+              summary: Redis is unavailable; requests fall back to Postgres
+  - name: connection-saturation-detects-global-capacity
+    interval: 5s
+    input_series:
+      - series: 'pg_stat_database_numbackends{datname="lab"}'
+        values: '100x24'
+      - series: 'pg_settings_max_connections'
+        values: '120x24'
+    alert_rule_test:
+      - eval_time: 1m
+        alertname: DatabaseConnectionSaturation
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+            exp_annotations:
+              summary: Postgres connections exceed 80% of max_connections

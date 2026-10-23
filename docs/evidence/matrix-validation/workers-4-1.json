@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-10-23T22:50:43.999423+00:00",
+  "host": "http://127.0.0.1:8088",
+  "profile_sha256": "a8a9bfccde378ab3ecc2ac1be832d9681d0c90ce177c1ad4b2181092ce006cad",
+  "load_source_sha256": "715efb97c14c2569af0ad875d78194003db8335c330eecafe790a69dcf34d6ad",
+  "http_client": "FastHttpUser",
+  "users": 20,
+  "users_at_end": 20,
+  "warmup_seconds": 3.0,
+  "measurement_seconds": 10.00087594985962,
+  "measurement_target_seconds": 10.0,
+  "spawn_rate": 100,
+  "total": {
+    "method": "",
+    "name": "Aggregated",
+    "requests": 15216,
+    "failures": 0,
+    "rps": 1521.4667271433943,
+    "p50_ms": 6,
+    "p95_ms": 16,
+    "p99_ms": 30
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "name": "/links/[code]",
+      "requests": 13729,
+      "failures": 0,
+      "rps": 1372.7797513769494,
+      "p50_ms": 6,
+      "p95_ms": 16,
+      "p99_ms": 31
+    },
+    {
+      "method": "GET",
+      "name": "/links/[code]/stats",
+      "requests": 324,
+      "failures": 0,
+      "rps": 32.397162171034424,
+      "p50_ms": 4,
+      "p95_ms": 10,
+      "p99_ms": 16
+    },
+    {
+      "method": "POST",
+      "name": "/links",
+      "requests": 1163,
+      "failures": 0,
+      "rps": 116.28981359541059,
+      "p50_ms": 6,
+      "p95_ms": 15,
+      "p99_ms": 28
+    }
+  ],
+  "error_rate": 0.0,
+  "cache_hit_rate": null,
+  "metrics_before": {
+    "at": 1792795843.9422138,
+    "cache_hits": null,
+    "cache_misses": null,
+    "database_connections": 39.0,
+    "nginx_connections": 1.0,
+    "app_inflight": 9.0
+  },
+  "metrics_after": {
+    "at": 1792795854.064111,
+    "cache_hits": null,
+    "cache_misses": null,
+    "database_connections": 41.0,
+    "nginx_connections": 21.0,
+    "app_inflight": 4.0
+  },
+  "samples": [
+    {
+      "at": 1792795843.999701,
+      "users": 20,
+      "loadgen_cpu_percent": 0.0,
+      "loadgen_process_cpu_percent": 98.9,
+      "loadgen_rss_bytes": 51740672,
+      "loadgen_memory_percent": 84.5,
+      "dependencies": {
+        "at": 1792795843.9998279,
+        "cache_hits": null,
+        "cache_misses": null,
+        "database_connections": 39.0,
+        "nginx_connections": 1.0,
+        "app_inflight": 9.0
+      }
+    },
+    {
+      "at": 1792795848.999821,
+      "users": 20,
+      "loadgen_cpu_percent": 96.1,
+      "loadgen_process_cpu_percent": 43.5,
+      "loadgen_rss_bytes": 32178176,
+      "loadgen_memory_percent": 84.5,
+      "dependencies": {
+        "at": 1792795849.000546,
+        "cache_hits": null,
+        "cache_misses": null,
+        "database_connections": 41.0,
+        "nginx_connections": 21.0,
+        "app_inflight": 8.0
+      }
+    }
+  ],
+  "errors": [],
+  "load_generator": {
+    "hostname": "umetakumibuns-MacBook-Pro.local",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "python": "3.11.5",
+    "cpu_count": 10
+  },
+  "server_samples": [
+    {
+      "at": 1792795845.830932,
+      "established_client_connections": 20
+    },
+    {
+      "at": 1792795851.138568,
+      "established_client_connections": 20
+    }
+  ],
+  "experiment": "workers-4",
+  "repeat": 1,
+  "configuration": {
+    "REPLICAS": "1",
+    "WEB_WORKERS": "4",
+    "CACHE_ENABLED": "false",
+    "CACHE_TTL": "60",
+    "DB_HOST": "postgres",
+    "DB_PORT": "5432",
+    "DB_POOL_SIZE": "16",
+    "NGINX_KEEPALIVE": "0",
+    "NGINX_CONNECTIONS": "1024",
+    "NGINX_PROXY_TIMEOUT": "6s",
+    "NOFILE": "1024",
+    "SOMAXCONN": "128"
+  }
+}

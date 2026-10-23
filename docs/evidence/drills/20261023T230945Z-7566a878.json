@@ -1,0 +1,16 @@
+{
+  "id": "20261023T230945Z-7566a878",
+  "fault": "packet-loss",
+  "round": "validation",
+  "status": "healed",
+  "cleanup_network": true,
+  "injected_at": 1792796987.217682,
+  "root_cause": "PostgreSQL egress had injected 10% packet loss, causing retransmission-sensitive tail latency. Automated validation, excluded from human diagnosis timing.",
+  "symptoms": "Automated probes observed the responses and dependency state recorded below.",
+  "evidence": "{\n  \"qdisc\": \"qdisc netem 8008: root refcnt 11 limit 1000 loss 10% seed 3132306253637279653\",\n  \"responses\": [\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200\n  ]\n}",
+  "validation": "passed",
+  "validation_verified_at": 1792796989.041034,
+  "healed_at": 1792796989.9570189,
+  "recovery_verified_at": 1792796989.975803,
+  "recovery_evidence": "Readiness 200 and successful link resolution after cleanup."
+}

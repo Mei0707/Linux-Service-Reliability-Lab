@@ -1,0 +1,32 @@
+[
+  {
+    "fault": "db-latency",
+    "incident": "docs/incidents/20261023T230931Z-15783fa9.md",
+    "status": "passed"
+  },
+  {
+    "fault": "packet-loss",
+    "incident": "docs/incidents/20261023T230945Z-7566a878.md",
+    "status": "passed"
+  },
+  {
+    "fault": "redis-outage",
+    "incident": "docs/incidents/20261023T230956Z-a3f1b7c5.md",
+    "status": "passed"
+  },
+  {
+    "fault": "db-exhaustion",
+    "incident": "docs/incidents/20261023T231003Z-470dced2.md",
+    "status": "passed"
+  },
+  {
+    "fault": "app-crash",
+    "incident": "docs/incidents/20261023T231017Z-5f86aa81.md",
+    "status": "passed"
+  },
+  {
+    "fault": "blocked-port",
+    "incident": "docs/incidents/20261023T231324Z-adb780a7.md",
+    "status": "passed"
+  }
+]

@@ -1,0 +1,332 @@
+name: reliability-lab
+services:
+  app:
+    build:
+      context: /Users/meiqiaowen/Documents/project/Linux Service Reliability Lab
+      dockerfile: Dockerfile
+    depends_on:
+      pgbouncer:
+        condition: service_healthy
+        required: true
+      postgres:
+        condition: service_healthy
+        required: true
+      redis:
+        condition: service_healthy
+        required: true
+    environment:
+      CACHE_ENABLED: "true"
+      CACHE_TTL: "60"
+      DATABASE_URL: postgresql://lab:lab@postgres:5432/lab
+      DB_POOL_SIZE: "16"
+      DB_POOL_TIMEOUT: "1"
+      EXPECTED_REPLICAS: "1"
+      REDIS_URL: redis://redis:6379/0
+      REQUEST_TIMEOUT: "5"
+      WEB_WORKERS: "1"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - import urllib.request; urllib.request.urlopen('http://localhost:8000/health/ready', timeout=2)
+      timeout: 3s
+      interval: 5s
+      retries: 5
+      start_period: 20s
+    image: reliability-lab-app:local
+    init: true
+    logging:
+      driver: json-file
+      options:
+        max-file: "3"
+        max-size: 10m
+    networks:
+      default: null
+    restart: unless-stopped
+    scale: 1
+    stop_grace_period: 30s
+    sysctls:
+      net.core.somaxconn: "128"
+    ulimits:
+      nofile:
+        soft: 1024
+        hard: 1024
+  grafana:
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: lab-grafana
+      GF_SECURITY_ADMIN_USER: admin
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    image: grafana/grafana:11.6.0
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 3000
+        published: "3300"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /Users/meiqiaowen/Documents/project/Linux Service Reliability Lab/infra/grafana/provisioning
+        target: /etc/grafana/provisioning
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: /Users/meiqiaowen/Documents/project/Linux Service Reliability Lab/infra/grafana/dashboards
+        target: /var/lib/grafana/dashboards
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: volume
+        source: grafana-data
+        target: /var/lib/grafana
+        volume: {}
+  nginx:
+    depends_on:
+      app:
+        condition: service_healthy
+        required: true
+    environment:
+      NGINX_CONNECTIONS: "1024"
+      NGINX_KEEPALIVE: "0"
+      NGINX_PROXY_TIMEOUT: 6s
+    image: nginx:1.28-alpine
+    logging:
+      driver: json-file
+      options:
+        max-file: "3"
+        max-size: 10m
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 80
+        published: "8088"
+        protocol: tcp
+    sysctls:
+      net.core.somaxconn: "128"
+    ulimits:
+      nofile:
+        soft: 1024
+        hard: 1024
+    volumes:
+      - type: bind
+        source: /Users/meiqiaowen/Documents/project/Linux Service Reliability Lab/infra/nginx/nginx.conf.template
+        target: /etc/nginx/lab.conf.template
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: /Users/meiqiaowen/Documents/project/Linux Service Reliability Lab/infra/nginx/15-render.sh
+        target: /docker-entrypoint.d/15-render.sh
+        read_only: true
+        bind:
+          create_host_path: true
+  nginx-exporter:
+    command:
+      - --nginx.scrape-uri=http://nginx:8081/stub_status
+    depends_on:
+      nginx:
+        condition: service_started
+        required: true
+    image: nginx/nginx-prometheus-exporter:1.4.2
+    networks:
+      default: null
+  pgbouncer:
+    build:
+      context: /Users/meiqiaowen/Documents/project/Linux Service Reliability Lab/infra/pgbouncer
+      dockerfile: Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+        required: true
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - PGPASSWORD=lab psql -h 127.0.0.1 -p 6432 -U lab -d lab -Atc 'SELECT 1'
+      timeout: 3s
+      interval: 5s
+      retries: 10
+    networks:
+      default: null
+  postgres:
+    command:
+      - postgres
+      - -c
+      - max_connections=120
+      - -c
+      - shared_buffers=128MB
+      - -c
+      - statement_timeout=4000
+    environment:
+      POSTGRES_DB: lab
+      POSTGRES_PASSWORD: lab_admin
+      POSTGRES_USER: postgres
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U postgres -d lab
+      timeout: 3s
+      interval: 3s
+      retries: 20
+    image: postgres:17.6-alpine
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 5432
+        published: "55432"
+        protocol: tcp
+    volumes:
+      - type: volume
+        source: postgres-data
+        target: /var/lib/postgresql/data
+        volume: {}
+      - type: bind
+        source: /Users/meiqiaowen/Documents/project/Linux Service Reliability Lab/sql
+        target: /docker-entrypoint-initdb.d
+        read_only: true
+        bind:
+          create_host_path: true
+  postgres-exporter:
+    depends_on:
+      postgres:
+        condition: service_healthy
+        required: true
+    environment:
+      DATA_SOURCE_NAME: postgresql://observer:observer@postgres:5432/lab?sslmode=disable
+    image: prometheuscommunity/postgres-exporter:v0.17.1
+    networks:
+      default: null
+  prometheus:
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.retention.time=7d
+    image: prom/prometheus:v3.2.1
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 9090
+        published: "9095"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /Users/meiqiaowen/Documents/project/Linux Service Reliability Lab/infra/prometheus/prometheus.yml
+        target: /etc/prometheus/prometheus.yml
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: /Users/meiqiaowen/Documents/project/Linux Service Reliability Lab/infra/prometheus/alerts.yml
+        target: /etc/prometheus/alerts.yml
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: /Users/meiqiaowen/Documents/project/Linux Service Reliability Lab/infra/prometheus/alerts.test.yml
+        target: /etc/prometheus/alerts.test.yml
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: volume
+        source: prometheus-data
+        target: /prometheus
+        volume: {}
+  redis:
+    command:
+      - redis-server
+      - --maxmemory
+      - 128mb
+      - --maxmemory-policy
+      - allkeys-lru
+      - --save
+      - ""
+      - --appendonly
+      - "no"
+    healthcheck:
+      test:
+        - CMD
+        - redis-cli
+        - ping
+      timeout: 2s
+      interval: 3s
+      retries: 10
+    image: redis:7.4.5-alpine
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 6379
+        published: "56379"
+        protocol: tcp
+  redis-exporter:
+    depends_on:
+      redis:
+        condition: service_started
+        required: true
+    environment:
+      REDIS_ADDR: redis://redis:6379
+    image: oliver006/redis_exporter:v1.74.0
+    networks:
+      default: null
+networks:
+  default:
+    name: reliability-lab_default
+volumes:
+  grafana-data:
+    name: reliability-lab_grafana-data
+  postgres-data:
+    name: reliability-lab_postgres-data
+  prometheus-data:
+    name: reliability-lab_prometheus-data
+x-app:
+  build: .
+  depends_on:
+    pgbouncer:
+      condition: service_healthy
+    postgres:
+      condition: service_healthy
+    redis:
+      condition: service_healthy
+  environment:
+    CACHE_ENABLED: "true"
+    CACHE_TTL: "60"
+    DATABASE_URL: postgresql://lab:lab@postgres:5432/lab
+    DB_POOL_SIZE: "16"
+    DB_POOL_TIMEOUT: "1"
+    EXPECTED_REPLICAS: "1"
+    REDIS_URL: redis://redis:6379/0
+    REQUEST_TIMEOUT: "5"
+    WEB_WORKERS: "1"
+  healthcheck:
+    interval: 5s
+    retries: 5
+    start_period: 20s
+    test:
+      - CMD
+      - python
+      - -c
+      - import urllib.request; urllib.request.urlopen('http://localhost:8000/health/ready', timeout=2)
+    timeout: 3s
+  image: reliability-lab-app:local
+  init: true
+  logging:
+    driver: json-file
+    options:
+      max-file: "3"
+      max-size: 10m
+  restart: unless-stopped
+  stop_grace_period: 30s
+  sysctls:
+    net.core.somaxconn: "128"
+  ulimits:
+    nofile:
+      hard: "1024"
+      soft: "1024"

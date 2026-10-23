@@ -1,0 +1,46 @@
+groups:
+  - name: reliability-lab
+    rules:
+      - alert: HighP95Latency
+        expr: histogram_quantile(0.95, sum by (le) (rate(lab_http_request_duration_seconds_bucket[2m]))) > 0.12
+        for: 1m
+        labels: {severity: warning}
+        annotations:
+          summary: 'Application p95 exceeds 120 ms'
+          description: 'Check DB operation latency, cache misses and app pool waiters.'
+      - alert: ElevatedErrorRate
+        expr: (sum(rate(lab_http_requests_total{status=~"5.."}[2m])) or vector(0)) / clamp_min(sum(rate(lab_http_requests_total[2m])), 0.001) > 0.01
+        for: 30s
+        labels: {severity: critical}
+        annotations:
+          summary: 'Application 5xx rate exceeds 1%'
+      - alert: ReplicaUnavailable
+        expr: (sum(up{job="app"}) or vector(0)) < (max(lab_expected_replicas) or vector(3))
+        for: 20s
+        labels: {severity: critical}
+        annotations:
+          summary: 'Fewer app replicas are reachable than configured'
+      - alert: DatabaseConnectionSaturation
+        expr: sum(pg_stat_database_numbackends{datname="lab"}) / max(pg_settings_max_connections) > 0.8
+        for: 30s
+        labels: {severity: warning}
+        annotations:
+          summary: 'Postgres connections exceed 80% of max_connections'
+      - alert: DatabasePoolSaturation
+        expr: sum(lab_db_pool_waiting) > 0
+        for: 20s
+        labels: {severity: warning}
+        annotations:
+          summary: 'Application requests are waiting for database connections'
+      - alert: RedisUnavailable
+        expr: redis_up == 0
+        for: 15s
+        labels: {severity: warning}
+        annotations:
+          summary: 'Redis is unavailable; requests fall back to Postgres'
+      - alert: DatabaseUnavailable
+        expr: pg_up == 0
+        for: 15s
+        labels: {severity: critical}
+        annotations:
+          summary: 'Postgres exporter cannot reach the database'

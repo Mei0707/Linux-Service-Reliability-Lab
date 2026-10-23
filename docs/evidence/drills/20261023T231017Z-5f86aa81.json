@@ -1,0 +1,16 @@
+{
+  "id": "20261023T231017Z-5f86aa81",
+  "fault": "app-crash",
+  "round": "validation",
+  "status": "healed",
+  "container": "4e621b6c1419213588c6b5c178ffc8d79da95dd258ba179ee4639400c304d9c7",
+  "injected_at": 1792797018.102956,
+  "root_cause": "One app replica was killed with restart disabled; Nginx continued routing reads to its peers. Automated validation, excluded from human diagnosis timing.",
+  "symptoms": "Automated probes observed the responses and dependency state recorded below.",
+  "evidence": "{\n  \"container_running\": \"false\",\n  \"responses\": [\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200\n  ],\n  \"responses_after_failover\": [\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200,\n    200\n  ]\n}",
+  "validation": "passed",
+  "validation_verified_at": 1792797025.305516,
+  "healed_at": 1792797025.607212,
+  "recovery_verified_at": 1792797025.655644,
+  "recovery_evidence": "Readiness 200 and successful link resolution after cleanup."
+}

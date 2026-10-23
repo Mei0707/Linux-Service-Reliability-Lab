@@ -1,0 +1,16 @@
+{
+  "id": "20261023T231003Z-470dced2",
+  "fault": "db-exhaustion",
+  "round": "validation",
+  "status": "healed",
+  "previous_connection_limit": -1,
+  "injected_at": 1792797003.888064,
+  "root_cause": "The non-superuser app role had connection limit zero and its existing sessions were terminated. Automated validation, excluded from human diagnosis timing.",
+  "symptoms": "Automated probes observed the responses and dependency state recorded below.",
+  "evidence": "{\n  \"role_limit\": \"rolconnlimit \\n--------------\\n            0\\n(1 row)\",\n  \"gateway_status\": 502\n}",
+  "validation": "passed",
+  "validation_verified_at": 1792797008.109979,
+  "healed_at": 1792797008.335561,
+  "recovery_verified_at": 1792797011.382563,
+  "recovery_evidence": "Readiness 200 and successful link resolution after cleanup."
+}

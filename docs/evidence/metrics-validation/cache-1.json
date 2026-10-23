@@ -1,0 +1,197 @@
+{
+  "schema_version": 2,
+  "started_at": "2026-10-23T23:07:51.158871+00:00",
+  "host": "http://127.0.0.1:8088",
+  "profile_sha256": "a8a9bfccde378ab3ecc2ac1be832d9681d0c90ce177c1ad4b2181092ce006cad",
+  "load_source_sha256": "81167c1ca5b9a483c40b67bed221fd433520dbf284243d1ede16bc4e1f00c046",
+  "http_client": "FastHttpUser",
+  "users": 20,
+  "users_at_end": 20,
+  "warmup_seconds": 10.0,
+  "measurement_seconds": 15.000301122665405,
+  "measurement_target_seconds": 15.0,
+  "spawn_rate": 100,
+  "total": {
+    "method": "",
+    "name": "Aggregated",
+    "requests": 16298,
+    "failures": 0,
+    "rps": 1086.5115217836378,
+    "p50_ms": 11,
+    "p95_ms": 21,
+    "p99_ms": 30
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "name": "/links",
+      "requests": 1254,
+      "failures": 0,
+      "rps": 83.59832177670155,
+      "p50_ms": 14,
+      "p95_ms": 26,
+      "p99_ms": 34
+    },
+    {
+      "method": "GET",
+      "name": "/links/[code]",
+      "requests": 14718,
+      "failures": 0,
+      "rps": 981.1803029581287,
+      "p50_ms": 11,
+      "p95_ms": 21,
+      "p99_ms": 30
+    },
+    {
+      "method": "GET",
+      "name": "/links/[code]/stats",
+      "requests": 326,
+      "failures": 0,
+      "rps": 21.73289704880758,
+      "p50_ms": 9,
+      "p95_ms": 17,
+      "p99_ms": 25
+    }
+  ],
+  "error_rate": 0.0,
+  "cache_hit_rate": 0.8605329174859313,
+  "metrics_before": {
+    "at": 1792796871.1285021,
+    "series": {
+      "cache_hits": {
+        "{\"__name__\": \"lab_cache_requests_total\", \"instance\": \"172.24.0.9:8000\", \"job\": \"app\", \"result\": \"hit\"}": 8448.0
+      },
+      "cache_misses": {
+        "{\"__name__\": \"lab_cache_requests_total\", \"instance\": \"172.24.0.9:8000\", \"job\": \"app\", \"result\": \"miss\"}": 1632.0
+      }
+    },
+    "cache_hits": 8448.0,
+    "cache_misses": 1632.0,
+    "database_connections": 19.0,
+    "nginx_connections": 21.0,
+    "app_inflight": 11.0
+  },
+  "metrics_after": {
+    "at": 1792796886.200129,
+    "series": {
+      "cache_hits": {
+        "{\"__name__\": \"lab_cache_requests_total\", \"instance\": \"172.24.0.9:8000\", \"job\": \"app\", \"result\": \"hit\"}": 21140.0
+      },
+      "cache_misses": {
+        "{\"__name__\": \"lab_cache_requests_total\", \"instance\": \"172.24.0.9:8000\", \"job\": \"app\", \"result\": \"miss\"}": 3689.0
+      }
+    },
+    "cache_hits": 21140.0,
+    "cache_misses": 3689.0,
+    "database_connections": 19.0,
+    "nginx_connections": 21.0,
+    "app_inflight": 10.0
+  },
+  "samples": [
+    {
+      "at": 1792796871.159095,
+      "users": 20,
+      "loadgen_cpu_percent": 0.0,
+      "loadgen_process_cpu_percent": 99.8,
+      "loadgen_rss_bytes": 42696704,
+      "loadgen_memory_percent": 83.4,
+      "dependencies": {
+        "at": 1792796871.159252,
+        "series": {
+          "cache_hits": {
+            "{\"__name__\": \"lab_cache_requests_total\", \"instance\": \"172.24.0.9:8000\", \"job\": \"app\", \"result\": \"hit\"}": 8448.0
+          },
+          "cache_misses": {
+            "{\"__name__\": \"lab_cache_requests_total\", \"instance\": \"172.24.0.9:8000\", \"job\": \"app\", \"result\": \"miss\"}": 1632.0
+          }
+        },
+        "cache_hits": 8448.0,
+        "cache_misses": 1632.0,
+        "database_connections": 19.0,
+        "nginx_connections": 21.0,
+        "app_inflight": 11.0
+      }
+    },
+    {
+      "at": 1792796876.15913,
+      "users": 20,
+      "loadgen_cpu_percent": 60.5,
+      "loadgen_process_cpu_percent": 30.6,
+      "loadgen_rss_bytes": 42139648,
+      "loadgen_memory_percent": 83.4,
+      "dependencies": {
+        "at": 1792796876.159316,
+        "series": {
+          "cache_hits": {
+            "{\"__name__\": \"lab_cache_requests_total\", \"instance\": \"172.24.0.9:8000\", \"job\": \"app\", \"result\": \"hit\"}": 13666.0
+          },
+          "cache_misses": {
+            "{\"__name__\": \"lab_cache_requests_total\", \"instance\": \"172.24.0.9:8000\", \"job\": \"app\", \"result\": \"miss\"}": 1733.0
+          }
+        },
+        "cache_hits": 13666.0,
+        "cache_misses": 1733.0,
+        "database_connections": 19.0,
+        "nginx_connections": 21.0,
+        "app_inflight": 4.0
+      }
+    },
+    {
+      "at": 1792796881.159421,
+      "users": 20,
+      "loadgen_cpu_percent": 66.9,
+      "loadgen_process_cpu_percent": 29.2,
+      "loadgen_rss_bytes": 37568512,
+      "loadgen_memory_percent": 83.4,
+      "dependencies": {
+        "at": 1792796881.159658,
+        "series": {
+          "cache_hits": {
+            "{\"__name__\": \"lab_cache_requests_total\", \"instance\": \"172.24.0.9:8000\", \"job\": \"app\", \"result\": \"hit\"}": 17553.0
+          },
+          "cache_misses": {
+            "{\"__name__\": \"lab_cache_requests_total\", \"instance\": \"172.24.0.9:8000\", \"job\": \"app\", \"result\": \"miss\"}": 2760.0
+          }
+        },
+        "cache_hits": 17553.0,
+        "cache_misses": 2760.0,
+        "database_connections": 19.0,
+        "nginx_connections": 21.0,
+        "app_inflight": 8.0
+      }
+    }
+  ],
+  "errors": [],
+  "load_generator": {
+    "hostname": "umetakumibuns-MacBook-Pro.local",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "python": "3.11.5",
+    "cpu_count": 10
+  },
+  "server_samples": [
+    {
+      "at": 1792796876.3312619,
+      "established_client_connections": 20
+    },
+    {
+      "at": 1792796881.6190422,
+      "established_client_connections": 21
+    }
+  ],
+  "experiment": "cache",
+  "repeat": 1,
+  "configuration": {
+    "REPLICAS": "1",
+    "WEB_WORKERS": "1",
+    "CACHE_ENABLED": "true",
+    "CACHE_TTL": "60",
+    "DB_HOST": "postgres",
+    "DB_PORT": "5432",
+    "DB_POOL_SIZE": "16",
+    "NGINX_KEEPALIVE": "0",
+    "NGINX_CONNECTIONS": "1024",
+    "NGINX_PROXY_TIMEOUT": "6s",
+    "NOFILE": "1024",
+    "SOMAXCONN": "128"
+  }
+}

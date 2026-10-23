@@ -1,0 +1,7 @@
+apiVersion: 1
+providers:
+  - name: reliability-lab
+    folder: Reliability Lab
+    type: file
+    options:
+      path: /var/lib/grafana/dashboards

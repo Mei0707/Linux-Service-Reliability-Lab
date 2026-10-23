@@ -1,0 +1,29 @@
+# Measured benchmark report
+
+Medians of repeated runs; latency units are milliseconds. These are measured outcomes, not promises.
+
+Warmup: 10.0 s after spawning; measurement: 15.0 s; client: FastHttpUser. One repetition is a smoke check, not a repeated study.
+
+| Experiment | Repeats | Users | All RPS | Successful RPS | p50 | p95 | p99 | Read p95 | Errors | Cache hit | DB connections |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| cache | 1 | 20 | 1086.51 | 1086.51 | 11.00 | 21.00 | 30.00 | 21.00 | 0.00% | 86.05% | 19.00 |
+
+## Attribution
+
+Each comparison below changes the versioned variable relative to its parent.
+
+
+## Interpretation
+
+- Virtual users, established TCP connections, and simultaneous in-flight requests are different quantities.
+- Nginx socket samples are saved in each run. A user count alone does not prove 1,000 concurrent connections.
+- Cache hit rate uses Prometheus counter deltas; scrape boundaries can differ by up to one scrape interval.
+- Cache ratios from schema v1 are withheld because those snapshots did not preserve individual counter identities. Schema v2 rejects counter resets and replica churn.
+- A short local smoke run cannot establish the proposal's target or a resume claim.
+- Use three 120-second measurements after 30-second warmups on a separate load host; inspect CPU, errors, socket samples, and per-endpoint results.
+- Missing dependency metrics are reported as n/a; they are never replaced with zero.
+- All RPS includes failed requests. Throughput comparisons and charts use successful RPS; inspect latency alongside errors.
+
+cache: sampled established client connections min=20, max=21.
+
+![Measured throughput and latency](benchmark.svg)

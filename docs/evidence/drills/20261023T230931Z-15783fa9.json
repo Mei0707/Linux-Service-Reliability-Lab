@@ -1,0 +1,16 @@
+{
+  "id": "20261023T230931Z-15783fa9",
+  "fault": "db-latency",
+  "round": "validation",
+  "status": "healed",
+  "cleanup_network": true,
+  "injected_at": 1792796973.277441,
+  "root_cause": "PostgreSQL egress had an injected 200 ms netem delay; DB-backed resolutions slowed. Automated validation, excluded from human diagnosis timing.",
+  "symptoms": "Automated probes observed the responses and dependency state recorded below.",
+  "evidence": "{\n  \"resolve_seconds\": 0.41164633305743337,\n  \"qdisc\": \"qdisc netem 8007: root refcnt 11 limit 1000 delay 200ms seed 615568416557909236\",\n  \"capture\": \"/Users/meiqiaowen/Documents/project/Linux Service Reliability Lab/artifacts/capture-20261023T230934Z.pcap\"\n}",
+  "validation": "passed",
+  "validation_verified_at": 1792796978.122106,
+  "healed_at": 1792796979.095008,
+  "recovery_verified_at": 1792796979.128145,
+  "recovery_evidence": "Readiness 200 and successful link resolution after cleanup."
+}

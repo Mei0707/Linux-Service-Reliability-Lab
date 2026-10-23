@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "seed": 20261023,
+  "key_count": 1000,
+  "zipf_exponent": 1.2,
+  "weights": {"read": 90, "write": 8, "stats": 2},
+  "think_time_min_seconds": 0.001,
+  "think_time_max_seconds": 0.01
+}

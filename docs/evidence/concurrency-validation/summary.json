@@ -1,0 +1,38 @@
+{
+  "baseline": {
+    "repetitions": 3,
+    "users": 1000,
+    "rps": 956.7622965248582,
+    "successful_rps": 565.3655983784205,
+    "p50_ms": 1000,
+    "p95_ms": 2000,
+    "p99_ms": 2600,
+    "read_p95_ms": 2000,
+    "error_rate": 0.40908457572802004,
+    "cache_hit_rate": null,
+    "database_connections_median": 19.0,
+    "client_connections_min": 1000,
+    "client_connections_max": 1012,
+    "profile_hashes": [
+      "a8a9bfccde378ab3ecc2ac1be832d9681d0c90ce177c1ad4b2181092ce006cad"
+    ]
+  },
+  "tuned": {
+    "repetitions": 3,
+    "users": 1000,
+    "rps": 1589.7893273335528,
+    "successful_rps": 1197.5831444442365,
+    "p50_ms": 410,
+    "p95_ms": 1600,
+    "p99_ms": 2000,
+    "read_p95_ms": 1600,
+    "error_rate": 0.3100057614749376,
+    "cache_hit_rate": null,
+    "database_connections_median": 26.0,
+    "client_connections_min": 1000,
+    "client_connections_max": 1001,
+    "profile_hashes": [
+      "a8a9bfccde378ab3ecc2ac1be832d9681d0c90ce177c1ad4b2181092ce006cad"
+    ]
+  }
+}
